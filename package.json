@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@cloudflare/workers-types": "github:cloudflare/workers-types"
+  }
+}
