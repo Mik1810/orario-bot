@@ -36,11 +36,16 @@ export default {
 			const payload = await request.json() as any
 			if('message' in payload){
 				const messageInfo:Message = getMessageInfo(payload.message)
-				if("command" in messageInfo) {
-					console.log(messageInfo.command)
-					let result = dispachCommand(messageInfo.command!)
-					if (result !== "Errore") await replyWithText(env.TOKEN, env.CHAT_ID, result)
-				}
+				console.log()
+				console.log(env.CHAT_ID)
+				console.log(messageInfo.chatID === env.CHAT_ID)
+				if(""+messageInfo.chatID === ""+env.CHAT_ID)
+					if("command" in messageInfo) {
+						console.log(messageInfo.command)
+						let result = dispachCommand(messageInfo.command!)
+						if (result !== "Errore") await replyWithText(env.TOKEN, env.CHAT_ID, result)
+					}
+				
 				//await replyWithText(env.BOT_TOKEN, payload.message.chat.id, payload.message.text)
 				//await replyWithText(env.BOT_TOKEN, payload.message.chat.id, payload.message.text)
 			}
