@@ -18,11 +18,13 @@ interface TelegramCommand{
     type:string
 }
 
-export const lessons = 	["08:30 - 11-30 Robotica\n11:30-12:30 Reti\n14:30-16:30 Compilatori", 
-				"09:30 - 11:30 Compilatori\n11:30 - 13:30 Immagini\n16:30 - 18:30 AI",
-				"08:30 - 11:30 Reti\n11:30 - 13:30 AI\n14:30 - 17:30 Inglese",
-				"14:30 - 16:30 Immagini\n16:30 - 18:30 Robotica",
-				"14:30 - 17:30 Mobile"]
+export const lessons = 	["08:30 - 11-30 Robotica\n11:30 - 12:30 Reti\n14:30 - 16:30 Compilatori", 
+						"09:30 - 11:30 Compilatori\n11:30 - 13:30 Immagini\n16:30 - 18:30 AI",
+						"08:30 - 11:30 Reti\n11:30 - 13:30 AI\n14:30 - 17:30 Inglese",
+						"14:30 - 16:30 Immagini\n16:30 - 18:30 Robotica",
+						"14:30 - 17:30 Mobile",
+						"Giacomo frocio",
+						"Giacomo froci0"]
 
 export default {
 	async scheduled(event:any, env:Env, ctx:ExecutionContext) {
@@ -55,7 +57,7 @@ export default {
 };
 
 async function replyWithText(token:string,chatID:string,text:string):Promise<Response>{
-    const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatID}&text=${text}`;
+    const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatID}&text=${text}&parse_mode=HTML`;
     return fetch(url)
 }
 

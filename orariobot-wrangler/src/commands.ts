@@ -12,9 +12,12 @@ export function dispachCommand(com:string){
 
 
 function hoursCommand(){
+
+    const days = ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì"]
     let result:string = ""
-    for (let lesson of lessons) {
-        result += lesson + "\n\n"
+    for (let i = 0; i < days.length; i++) {
+        result += "<b>" + days[i] + "</b>:\n"
+        result += lessons[i] + "\n\n"
     }
     return result
 }
