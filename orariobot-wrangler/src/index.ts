@@ -18,13 +18,14 @@ interface TelegramCommand{
     type:string
 }
 
-export const lessons = 	["08:30 - 11-30 Robotica\n11:30 - 12:30 Reti\n14:30 - 16:30 Compilatori", 
-						"09:30 - 11:30 Compilatori\n11:30 - 13:30 Immagini\n16:30 - 18:30 AI",
-						"08:30 - 11:30 Reti\n11:30 - 13:30 AI\n14:30 - 17:30 Inglese",
-						"14:30 - 16:30 Immagini\n16:30 - 18:30 Robotica",
-						"14:30 - 17:30 Mobile",
-						"Giacomo frocio",
-						"Giacomo froci0"]
+export const lessons = 	[	"08:30 - 11-30 Algoritmica\n11:30 - 13:30 Agile\n14:30 - 16:30 TCC*\n16:30 - 18-30 Teoria dell'Informazione", 
+							"09:30 - 11:30 Bioinformatica\n11:30 - 13:30 Tecnologie del Web*\n14:30 - 16:30 Teoria dell'Informazione\n16:30 - 18:30 Web Engineering",
+							"08:30 - 10:30 TCC*\n10:30 - 13:30 Tecnologie del Web*\n14:30 - 16:30 Mobile",
+							"09:30 - 11:30 Web Engineering\n11:30 - 13:30 Bioinformatica\n14:30 - 16:30 Algoritmica\n16:30 - 18:30 Machine Learning",
+							"09:30 - 11:30 Agile\n11:30 - 13:30 Sviluppo Web Avanzato\n14:30 - 16:30 Machine Learning\n16:30 - 18:30 Mobile",
+							"Godetevi un sereno sabato!",
+							"Buona domenica, la festa del signore!"
+						]
 
 export default {
 	async scheduled(event:any, env:Env, ctx:ExecutionContext) {
