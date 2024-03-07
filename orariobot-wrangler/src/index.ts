@@ -18,21 +18,55 @@ interface TelegramCommand{
     type:string
 }
 
-export const lessons = 	[	"08:30 - 11-30 Algoritmica\n11:30 - 13:30 Agile\n14:30 - 16:30 TCC*\n16:30 - 18-30 Information Theory", 
+export const lessons = 	[	
+							"Buona domenica, la festa del signore!",
+							"08:30 - 11-30 Algoritmica\n11:30 - 13:30 Agile\n14:30 - 16:30 TCC*\n16:30 - 18-30 Information Theory", 
 							"09:30 - 11:30 Bioinformatica\n11:30 - 13:30 Tecnologie del Web*\n14:30 - 16:30 Information Theory\n16:30 - 18:30 Web Engineering",
 							"08:30 - 10:30 TCC*\n10:30 - 13:30 Tecnologie del Web*\n14:30 - 16:30 Mobile",
 							"09:30 - 11:30 Web Engineering\n11:30 - 13:30 Bioinformatica\n14:30 - 16:30 Algoritmica\n16:30 - 18:30 Machine Learning",
 							"09:30 - 11:30 Agile\n11:30 - 13:30 Sviluppo Web Avanzato\n14:30 - 16:30 Machine Learning\n16:30 - 18:30 Mobile",
-							"Godetevi un sereno sabato!",
-							"Buona domenica, la festa del signore!"
+							"Godetevi un sereno sabato!"
 						]
+
+
 
 export default {
 	async scheduled(event:any, env:Env, ctx:ExecutionContext) {
-		await replyWithText(env.TOKEN, env.CHAT_ID, lessons[new Date().getDay() - 1])
+		/**
+		 * Domenica: 0
+		 * Lunedì: 1
+		 * Martedì: 2
+		 * Mercoledì: 3
+		 * Giovedì: 4
+		 * Venerdì: 5
+		 * Sabato: 6
+		 */
+		
+
+		if (event['cron'] === "* * * * *") {
+			// Trigger di test che viene eseguito ogni minuto
+			//await replyWithText(env.TOKEN, env.CHAT_ID, "Luca frociazzo di merda, MERDA!")
+		} else if (event['cron'] === "0 20 * * *") {
+			// Trigger serale (21:00)
+			await replyWithText(env.TOKEN, 
+								env.CHAT_ID, 
+								"<b>Lezioni di domani</b>\n\n" + lessons[(new Date().getDay() + 1) % 7])
+		} else if (event['cron'] === "0 4 * * *"){
+			// Trigger giornaliero (05:00)
+			await replyWithText(env.TOKEN, 
+								env.CHAT_ID, 
+								"Lezioni di domani\n\n" + lessons[new Date().getDay()])
+		} else if (event['cron'] === "0 13 * * *"){
+			// Trigger luca cacacazzo
+			const probability = Math.floor(Math.random() * 10) + 1
+			if (probability == 1) {
+				await replyWithText(env.TOKEN, 
+									env.CHAT_ID, 
+									"Si stava meglio quando i bot non esistevano...")
+			}
+
+		}
 	},
-
-
 
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
 		if(request.method === "POST"){
@@ -44,8 +78,6 @@ export default {
 						let result = dispachCommand(messageInfo.command!)
 						if (result !== "Errore") await replyWithText(env.TOKEN, env.CHAT_ID, result)
 					}
-				
-				//await replyWithText(env.BOT_TOKEN, payload.message.chat.id, payload.message.text)
 			}
 		}
 		return new Response(`Running...`);
