@@ -37,14 +37,14 @@ function hoursCommand(){
                     'Dicembre'
                 ];
     const today = new Date();
-    const weekDay = days[(today.getDay()-1)%7];
+    const weekDay = days[(today.getDay() - 1) %7];
     const monthNumber = today.getMonth();
 
     // Crea la stringa completa
     const stringaOggi = `Oggi è ${weekDay} ${today.getDate()} ${months[monthNumber]}`;
     let result:string = stringaOggi + "\n\n"
-    for (let i = 0; i < days.length-2; i++) {
-        result += "<b>" + days[i] + "</b>:\n"
+    for (let i = 1; i < days.length-1; i++) {
+        result += "<b>" + days[(i - 1 )%7] + "</b>:\n"
         result += lessons[i] + "\n\n"
     }
     return result

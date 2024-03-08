@@ -3,6 +3,7 @@ import { dispachCommand } from "./commands";
 export interface Env {
 	TOKEN:string
 	CHAT_ID: string
+	NAMESPACE: string
 }
 
 interface Message {
