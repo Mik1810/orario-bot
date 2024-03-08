@@ -22,7 +22,7 @@ interface TelegramCommand{
 export const lessons = 	[	
 							"Buona domenica, la festa del signore!",
 							"08:30 - 11-30 Algoritmica\n11:30 - 13:30 Agile\n14:30 - 16:30 TCC*\n16:30 - 18-30 Information Theory", 
-							"09:30 - 11:30 Bioinformatica\n11:30 - 13:30 Tecnologie del Web*\n14:30 - 16:30 Information Theory\n16:30 - 18:30 Web Engineering",
+							"08:30 - 11:30 Bioinformatica\n11:30 - 13:30 Tecnologie del Web*\n14:30 - 16:30 Information Theory\n16:30 - 18:30 Web Engineering",
 							"08:30 - 10:30 TCC*\n10:30 - 13:30 Tecnologie del Web*\n14:30 - 16:30 Mobile",
 							"09:30 - 11:30 Web Engineering\n11:30 - 13:30 Bioinformatica\n14:30 - 16:30 Algoritmica\n16:30 - 18:30 Machine Learning",
 							"09:30 - 11:30 Agile\n11:30 - 13:30 Sviluppo Web Avanzato\n14:30 - 16:30 Machine Learning\n16:30 - 18:30 Mobile",
