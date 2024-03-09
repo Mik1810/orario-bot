@@ -20,13 +20,13 @@ interface TelegramCommand{
 }
 
 export const lessons = 	[	
-							"Buona domenica, la festa del signore!",
+							"Buona domenica, pezzo di coglione!",
 							"08:30 - 11-30 Algoritmica\n11:30 - 13:30 Agile\n14:30 - 16:30 TCC*\n16:30 - 18-30 Information Theory", 
 							"08:30 - 11:30 Bioinformatica\n11:30 - 13:30 Tecnologie del Web*\n14:30 - 16:30 Information Theory\n16:30 - 18:30 Web Engineering",
 							"08:30 - 10:30 TCC*\n10:30 - 13:30 Tecnologie del Web*\n14:30 - 16:30 Mobile",
 							"09:30 - 11:30 Web Engineering\n11:30 - 13:30 Bioinformatica\n14:30 - 16:30 Algoritmica\n16:30 - 18:30 Machine Learning",
 							"09:30 - 11:30 Agile\n11:30 - 13:30 Sviluppo Web Avanzato\n14:30 - 16:30 Machine Learning\n16:30 - 18:30 Mobile",
-							"Godetevi un sereno sabato!"
+							"Sabato è il giorno dei froci, frocio"
 						]
 
 
@@ -48,17 +48,29 @@ export default {
 			// Trigger di test che viene eseguito ogni minuto
 			//await replyWithText(env.TOKEN, env.CHAT_ID, "Luca frociazzo di merda, MERDA!")
 		} else if (event['cron'] === "0 20 * * *") {
+			if((new Date().getDay() + 1) % 7 === 0 || (new Date().getDay() + 1) % 7 === 6) {
+				// è sabato o domenica
+				await replyWithText(env.TOKEN, 
+					env.CHAT_ID, 
+					lessons[new Date().getDay()])
+			}
 			// Trigger serale (21:00)
 			await replyWithText(env.TOKEN, 
 								env.CHAT_ID, 
 								"<b>Lezioni di domani</b>\n\n" + lessons[(new Date().getDay() + 1) % 7])
 		} else if (event['cron'] === "0 4 * * *"){
 			// Trigger giornaliero (05:00)
+			if(new Date().getDay() === 0 || new Date().getDay() === 6) {
+				// è sabato o domenica
+				await replyWithText(env.TOKEN, 
+					env.CHAT_ID, 
+					lessons[new Date().getDay()])
+			}
 			await replyWithText(env.TOKEN, 
 								env.CHAT_ID, 
-								"Lezioni di domani\n\n" + lessons[new Date().getDay()])
+								"<b>Lezioni di domani</b>\n\n" + lessons[new Date().getDay()])
 		} else if (event['cron'] === "0 13 * * *"){
-			// Trigger luca cacacazzo
+			// Trigger easter egg
 			const probability = Math.floor(Math.random() * 10) + 1
 			if (probability == 1) {
 				await replyWithText(env.TOKEN, 

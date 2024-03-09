@@ -2,16 +2,28 @@ import { lessons } from "."
 
 export function dispachCommand(com:string){
     switch(com){
-        case "orarioINFBot":
-        case "orario":
-            return hoursCommand()
+        //case "orarioINFBot":
+        case "lessons":
+            return lessonsCommand()
+        case "tomorrow":
+            return nextDayCommand()
         default :
             return "Errore"
     }
 }
 
+function nextDayCommand() {
 
-function hoursCommand(){
+    if((new Date().getDay() + 1) % 7 === 0 || (new Date().getDay() + 1) % 7 === 6) {
+        // è sabato o domenica
+        return lessons[(new Date().getDay() + 1) % 7]
+    }
+    return "Lezioni di domani:\n\n" + lessons[(new Date().getDay() + 1) % 7]
+    
+}
+
+
+function lessonsCommand(){
 
     const days = [  
                     'Lunedì', 
