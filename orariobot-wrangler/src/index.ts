@@ -48,16 +48,17 @@ export default {
 			// Trigger di test che viene eseguito ogni minuto
 			//await replyWithText(env.TOKEN, env.CHAT_ID, "Luca frociazzo di merda, MERDA!")
 		} else if (event['cron'] === "0 20 * * *") {
+			// Trigger serale (21:00)
 			if((new Date().getDay() + 1) % 7 === 0 || (new Date().getDay() + 1) % 7 === 6) {
 				// è sabato o domenica
 				await replyWithText(env.TOKEN, 
 					env.CHAT_ID, 
 					lessons[new Date().getDay()])
+			} else {
+				await replyWithText(env.TOKEN, 
+									env.CHAT_ID, 
+									"<b>Lezioni di domani</b>\n\n" + lessons[(new Date().getDay() + 1) % 7])
 			}
-			// Trigger serale (21:00)
-			await replyWithText(env.TOKEN, 
-								env.CHAT_ID, 
-								"<b>Lezioni di domani</b>\n\n" + lessons[(new Date().getDay() + 1) % 7])
 		} else if (event['cron'] === "0 4 * * *"){
 			// Trigger giornaliero (05:00)
 			if(new Date().getDay() === 0 || new Date().getDay() === 6) {
@@ -65,10 +66,11 @@ export default {
 				await replyWithText(env.TOKEN, 
 					env.CHAT_ID, 
 					lessons[new Date().getDay()])
+			} else {
+				await replyWithText(env.TOKEN, 
+									env.CHAT_ID, 
+									"<b>Lezioni di domani</b>\n\n" + lessons[new Date().getDay()])
 			}
-			await replyWithText(env.TOKEN, 
-								env.CHAT_ID, 
-								"<b>Lezioni di domani</b>\n\n" + lessons[new Date().getDay()])
 		} else if (event['cron'] === "0 13 * * *"){
 			// Trigger easter egg
 			const probability = Math.floor(Math.random() * 10) + 1
