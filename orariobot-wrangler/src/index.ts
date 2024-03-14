@@ -88,7 +88,7 @@ export default {
 			const payload = await request.json() as any
 			if('message' in payload){
 				const messageInfo:Message = getMessageInfo(payload.message)
-				await getScraped(request, env, ctx)
+				//await getScraped(request, env, ctx)
 				if(""+messageInfo.chatID === ""+env.CHAT_ID)
 					if("command" in messageInfo) {
 						let result = dispachCommand(messageInfo.command!)
