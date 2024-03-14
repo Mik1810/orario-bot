@@ -88,16 +88,29 @@ export default {
 			const payload = await request.json() as any
 			if('message' in payload){
 				const messageInfo:Message = getMessageInfo(payload.message)
+				await getScraped(request, env, ctx)
 				if(""+messageInfo.chatID === ""+env.CHAT_ID)
 					if("command" in messageInfo) {
 						let result = dispachCommand(messageInfo.command!)
-						if (result !== "Errore") await replyWithText(env.TOKEN, env.CHAT_ID, result)
+						if (result !== "Errore") {
+							await replyWithText(env.TOKEN, env.CHAT_ID, result)
+							
+						}
 					}
 			}
 		}
 		return new Response(`Running...`);
 	},
 };
+
+async function getScraped(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+	const url = "https://aule.univaq.it/week.php?year=2024&month=3&day=14&area=26.unict.it/it/orario-lezioni"
+	const response = await fetch(url)
+	const text = await response.text()
+	console.log(text)
+	await replyWithText(env.TOKEN, env.CHAT_ID, ";)")
+	return new Response(text)
+}
 
 async function replyWithText(token:string,chatID:string,text:string):Promise<Response>{
     const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatID}&text=${text}&parse_mode=HTML`;
